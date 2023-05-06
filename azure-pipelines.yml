@@ -1,9 +1,5 @@
 # Xamarin.Android and Xamarin.iOS
-- task: InstallAppleCertificate@2
-  inputs:
-    certSecureFile: 'facetsprodCertificates.p12'
-    certPwd: 'facetsrocks!'
-    keychain: 'temp'
+
 # Build a Xamarin.Android and Xamarin.iOS app.
 # Add steps that test, sign, and distribute the app, save build artifacts, and more:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/xamarin
@@ -26,6 +22,18 @@ jobs:
   - task: NuGetCommand@2
     inputs:
       restoreSolution: '**/*.sln'
+
+  - task: InstallAppleCertificate@2
+    inputs:
+      certSecureFile: 'facetsprodCertificates.p12'
+      certPwd: 'facetsrocks!'
+      keychain: 'temp'
+
+  - task: InstallAppleProvisioningProfile@1
+    inputs:
+      provisioningProfileLocation: 'secureFiles'
+      provProfileSecureFile: 'FM_Facets_App_Store.mobileprovision'
+      removeProfile: false
 
   - task: XamariniOS@2
     inputs:
