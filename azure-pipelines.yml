@@ -1,4 +1,9 @@
 # Xamarin.Android and Xamarin.iOS
+- task: InstallAppleCertificate@2
+  inputs:
+    certSecureFile: 'facetsprodCertificates.p12'
+    certPwd: 'facetsrocks!'
+    keychain: 'temp'
 # Build a Xamarin.Android and Xamarin.iOS app.
 # Add steps that test, sign, and distribute the app, save build artifacts, and more:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/ecosystems/xamarin
